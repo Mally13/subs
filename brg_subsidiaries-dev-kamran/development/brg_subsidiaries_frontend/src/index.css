@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+  scrollbar-width: none;
+}
+
+/* google chorome  */
+::-webkit-scrollbar {
+  width: 0; 
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}

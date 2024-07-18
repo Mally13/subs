@@ -1,0 +1,50 @@
+{% extends "../base/base.html" %}
+
+{% block title %}
+edit
+{% endblock title %}
+
+{% load custom_tags %}
+
+{% block content %}
+<div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold mb-6">Edit Subsidiary</h2>
+    <form method="post" enctype="multipart/form-data" class="space-y-6">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="mb-4">
+            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                {{ field.label }}
+                {% if field|is_required %}
+                <span class="text-red-500">*</span>
+                {% else %}
+                <span class="text-gray-500">(optional)</span>
+                {% endif %}
+            </label>
+            {% if field.label == "Mobile" %}
+                <input type="tel" id="{{ field.id_for_label }}" name="{{ field.name }}" placeholder="+971-505-91-6117" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            {% else %}
+                {{ field }}
+            {% endif %}
+            {% if field.errors %}
+            <p class="text-red-500 text-xs italic">{{ field.errors }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">Save</button>
+    </form>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileInput = document.getElementById('id_mobile'); // Replace with actual ID of your mobile input field
+
+        mobileInput.addEventListener('input', function() {
+            let value = mobileInput.value.trim();
+            if (value.charAt(0) !== '+') {
+                value = '+' + value;
+            }
+            mobileInput.value = value;
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends '../base/base.html' %}
+
+{% block title %}
+detailx
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="px-4 py-5 sm:px-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Subsidiary Details</h3>
+            <p class="mt-1 max-w-2xl text-sm text-gray-500">Detailed information about the subsidiary.</p>
+        </div>
+        <div class="border-t border-gray-200">
+            <dl>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Name</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.name }}</dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Category</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.category }}</dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Logo</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                        {% if subsidiary.logo %}
+                            <img src="{{ subsidiary.logo.url }}" alt="Logo" class="h-20 w-auto">
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Address</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.address }}</dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Website</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.website }}</dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Contact Person</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.contact_person }}</dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Contact Email</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.contact_email }}</dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Mobile</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.mobile }}</dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Work</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.work }}</dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Business Description</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.business_description }}</dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Social Media Links</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.social_media_links }}</dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Legal Entity Type</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.legal_entity_type }}</dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Licensing Authority</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.licensing_authority }}</dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Subsidiary Code</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.subsidiary_code }}</dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Board Members</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.board_members }}</dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Operating Countries</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">{{ subsidiary.operating_countries }}</dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Compliance Certifications</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
+                        {% if subsidiary.compliance_certifications %}
+                            <a href="{{ subsidiary.compliance_certifications.url }}">Download</a>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a type="submit" href="{% url "list_subsidiaries" %}" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">Back</a>
+    </div>
+</div>
+{% endblock %}

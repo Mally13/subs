@@ -1,0 +1,111 @@
+{% extends "../base/base.html" %}
+
+{% block title %}
+home
+{% endblock title %}
+
+{% load custom_tags %}
+
+{% block content %}
+<div class="container min-h-screen w-full mx-auto">
+    <h2 class="">List of Subsidiaries</h2>
+    <table class="table table-striped min-w-full bg-white border border-gray-200">
+        <thead>
+            <tr>
+                <th class="py-2 px-4 border-b text-left">Name</th>
+                {% comment %} <th class="py-2 px-4 border-b text-left">Category</th> {% endcomment %}
+                <th class="py-2 px-4 border-b text-left">Logo</th>
+                <th class="py-2 px-4 border-b text-left">Address</th>
+                <th class="py-2 px-4 border-b text-left">Website</th>
+                <th class="py-2 px-4 border-b text-left">Contact Person</th>
+                <th class="py-2 px-4 border-b text-left">Contact Email</th>
+                <th class="py-2 px-4 border-b text-left">Mobile</th>
+                {% comment %} <th class="py-2 px-4 border-b text-left">Work</th> {% endcomment %}
+                {% comment %} <th class="py-2 px-4 border-b text-left">No. of Employees</th> {% endcomment %}
+                {% comment %} <th class="py-2 px-4 border-b text-left">Annual Revenue</th> {% endcomment %}
+                {% comment %} <th class="py-2 px-4 border-b text-left">Year Established</th> {% endcomment %}
+                <th class="py-2 px-4 border-b text-left">Business Description</th>
+                {% comment %} <th class="py-2 px-4 border-b text-left">Social Media Links</th> {% endcomment %}
+                {% comment %} <th class="py-2 px-4 border-b text-left">Parent Company Relationship</th> {% endcomment %}
+                {% comment %} <th class="py-2 px-4 border-b text-left">Operational Status</th> {% endcomment %}
+                <th class="py-2 px-4 border-b text-left">Legal Entity Type</th>
+                {% comment %} <th class="py-2 px-4 border-b text-left">Licensing Authority</th> {% endcomment %}
+                {% comment %} <th class="py-2 px-4 border-b text-left">Market</th> {% endcomment %}
+                {% comment %} <th class="py-2 px-4 border-b text-left">Subsidiary Code</th> {% endcomment %}
+                {% comment %} <th class="py-2 px-4 border-b text-left">Board Members</th> {% endcomment %}
+                {% comment %} <th class="py-2 px-4 border-b text-left">Operating Countries</th> {% endcomment %}
+                {% comment %} <th class="py-2 px-4 border-b text-left">Compliance Certifications</th> {% endcomment %}
+                <th class="py-2 px-4 border-b text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subsidiary in subsidiaries %}
+            <tr class="{% cycle 'bg-gray-100' 'bg-white' %}" onclick="window.location='{% url 'subsidiary_detail' subsidiary.id %}'">
+                <td class="py-2 px-4 border-b">{{ subsidiary.name }}</td>
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.category }}</td> {% endcomment %}
+                <td class="py-2 px-4 border-b">
+                    {% if subsidiary.logo %}
+                        <img src="{{ subsidiary.logo.url }}" alt="Logo" width="50">
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td class="py-2 px-4 border-b">{{ subsidiary.address }}</td>
+                <td class="py-2 px-4 border-b">{{ subsidiary.website }}</td>
+                <td class="py-2 px-4 border-b">{{ subsidiary.contact_person }}</td>
+                <td class="py-2 px-4 border-b">{{ subsidiary.contact_email }}</td>
+                <td class="py-2 px-4 border-b">{{ subsidiary.mobile }}</td>
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.work }}</td> {% endcomment %}
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.no_of_employees }}</td> {% endcomment %}
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.annual_revenue }}</td> {% endcomment %}
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.year_established }}</td> {% endcomment %}
+                <td class="py-2 px-4 border-b">{{ subsidiary.business_description }}</td>
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.social_media_links }}</td> {% endcomment %}
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.parent_company_relationship }}</td> {% endcomment %}
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.operational_status }}</td> {% endcomment %}
+                <td class="py-2 px-4 border-b">{{ subsidiary.legal_entity_type }}</td>
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.licensing_authority }}</td> {% endcomment %}
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.market }}</td> {% endcomment %}
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.subsidiary_code }}</td> {% endcomment %}
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.board_members }}</td> {% endcomment %}
+                {% comment %} <td class="py-2 px-4 border-b">{{ subsidiary.operating_countries }}</td> {% endcomment %}
+                {% comment %} <td class="py-2 px-4 border-b">
+                    {% if subsidiary.compliance_certifications %}
+                        <a href="{{ subsidiary.compliance_certifications.url }}">Download</a>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td> {% endcomment %}
+                <td class="py-2 px-4 border-b">
+
+                    {% if subsidiary.user == request.user %}
+                        {% if subsidiary|has_pending_edit:pending_edits %}
+                            <span class="text-blue-500 mr-2">Edit pending</span>
+                        {% else %}
+                            <a href="{% url 'edit_subsidiary' subsidiary.id %}" class="text-blue-500 hover:text-blue-700 mr-2">request Edit</a>
+                        {% endif %}
+                    
+
+                        {% if subsidiary|has_pending_delete:pending_deletions %}
+                            <span class="text-red-500 mr-2">Delete pending</span>
+                        {% else %}
+                            <a href="{% url 'request_delete_subsidiary' subsidiary.id %}" class="text-red-500 hover:text-red-700 mr-2">request delete</a>
+                        {% endif %}
+                    {% endif %}                    
+                    
+                    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% comment %} create subsidiary {% endcomment %}
+    <div class="lg:text-end text-center lg:mr-10 lg:my-5">
+        <a href="{% url "add_subsidiary" %}" class="inline-block px-4 md:px-6 py-1 md:py-2 text-white bg-blue-500 rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+            Create subsidiary
+        </a>
+    </div>
+</div>
+{% endblock %}

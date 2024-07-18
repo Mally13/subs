@@ -1,0 +1,18 @@
+{% extends "../base/base.html" %}
+
+{% block title %}
+delete
+{% endblock title %}
+
+{% block content %}
+<div class="container mx-auto py-8 min-h-screen text-gray-800">
+    <div class="mx-auto bg-white p-6 rounded-lg shadow-md max-w-md">
+        <h2 class="text-2xl font-semibold mb-4">Request to Delete {{ subsidiary.name }}</h2>
+        <p class="mb-6">Are you sure you want to request the deletion of this subsidiary?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Request Deletion</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

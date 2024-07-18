@@ -1,0 +1,16 @@
+/* Default background for larger screens */
+.background {
+  background: linear-gradient(
+    to right,
+    #181344 50%,
+    rgb(243, 239, 239) 0 76%,
+    white 0 100%
+  );
+}
+
+/*  background for mobile screens */
+@media (max-width: 1024px) {
+  .background {
+    background: #181344; /* Replace with your preferred color */
+  }
+}
